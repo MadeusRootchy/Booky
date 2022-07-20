@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 import sqlite3
+import numpy as np
+import csv
+import sys
+from nimewo import edit2
+from search import Lister2
+from email import edit4
+from adres import edit5
+from non import edit3
 from bd import connexion
 from bd2 import Create
 from bd3 import Insertion
@@ -7,7 +15,6 @@ from bd4 import Lister
 from BD8 import sup
 contact={}
 lischwa=[1,2,3,4,5,6]
-
 
 while True :
     print("   ----------Booky----------")
@@ -34,21 +41,51 @@ while True :
             
         if int (chwa)==1:
             fullname=input("Enter the fullname : ")
+            while not fullname :
+                fullname=input("Enter the fullname please : ")
+            
             number=input("Enter the phone number : ")
+            while not number :
+                number=input("Enter the phone_Number please : ")
+            while not isinstance(number,int):
+                print("The phone number can't be letter!")
+                number=input("enter the phone_Number please : ")
+
             email=input("Enter the mail : ")
+          
             address=input("Enter the adress : ")
             connexion()
             Create()
             Insertion(fullname,number,email,address)
         if int(chwa)==2:
-            pass
+          print("Currently undisponible , call the programmer")
+
+            
     if int(choix)==2  :
-        pass
+        
+        fullname = input("Enter the name to edit :")
+        change = input(" Put :\n[1] To edit the name\n[2] To edit the number\n[3]To edit  the email\n[4] To edit the address\n\n")
+        if int(change)== 2:
+            newnumber = input("Enter the new number : ")
+            edit2(fullname,newnumber)
+        if int(change)== 1:
+            newname = input("Enter the new name : ")
+            edit3(fullname,newname)
+        if int(change)== 3:
+            newemail = input("Enter the new email : ")
+            edit4(fullname,newemail)
+        if int(change)== 4:
+            newadress = input("Enter the new adress : ")
+            edit5(fullname,newadress)
+        else :
+            pass
     if int(choix)==3  :
         name = input("Enter the fullname to delete :")
         sup(name)
     if int(choix)==4  :
-        pass
+        sear = input("Enter the name to search information about : ")
+        Lister2(sear)
+        
     if int(choix)==5 :
         Lister()
         

@@ -1,23 +1,32 @@
 # -*- coding: utf-8 -*-
 import sqlite3
-def MAJ(fullname,number,email,address):
+def edit(fullname,newname,newnumber,newemail,newaddress):
     try:
-        conn = sqlite3.connect('my.db')
+        conn = sqlite3.connect('BookyBase.db')
         cur = conn.cursor()
-        print("Connexion réussie à SQLite")
-
-        sql = "UPDATE contacts SET address = ? WHERE fullname = ?"
-        value = (address,fullname )
+        #pou nouvonon an
+        sql = "UPDATE contacts SET fullname = ? WHERE fullname = ?"
+        value = (newname,fullname )
         cur.execute(sql, value)
-        #sql = "UPDATE contacts SET address = ? WHERE fullname = ?"
-
-        cur.execute(sql)
         conn.commit()
-        print("Enregistrement mis à jour avec succès")
+        
+        #pou nouvoemail lan
+        sql2 = "UPDATE contacts SET email = ? WHERE fullname = ?"
+        value = (newemail,fullname )
+        cur.execute(sql2, value)
+        conn.commit()
+        #pou adres lan
+        sql3 = "UPDATE contacts SET address = ? WHERE fullname = ?"
+        value = (newaddress,fullname )
+        cur.execute(sql3, value)
+        conn.commit()
+
+       
+        print("successfuly update")
     
         cur.close()
         conn.close()
-        print("Connexion SQLite est fermée")
+        print("Connexion closed")
 
     except sqlite3.Error as error:
-        print("Erreur lors du mis à jour dans la table person", error)
+        print("Error,someting went wrong!",error)

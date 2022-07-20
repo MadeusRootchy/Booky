@@ -12,3 +12,13 @@ def connexion():
 
     except sqlite3.Error as error:
         print("Erreur lors de la connexion à SQLite", error)
+
+'''
+number:345
+
+ki nouvo non(Lub): 
+ki nouvo imel (): 
+
+
+
+'''
